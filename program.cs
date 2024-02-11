@@ -28,7 +28,9 @@ namespace program{
             string pattern = @"[0-9A-Z]{2}";
             int sequenceCount;
             string sequenceCode;
-            bool sequenceEnd;
+            bool sequenceEnd = false;
+            int[] sequenceReward;
+            Random randomNumber = new Random();
             int sum;
 
             Stopwatch stopwatch = new Stopwatch();
@@ -58,6 +60,43 @@ namespace program{
                     for(int i  = 0; i < matrix_X; i++){
                         for(int j = 0; j < matrix_Y; j++){
                             matriksMain[i][j] = splittedItems;
+                            if(!Regex.IsMatch(matriksMain[i][j], pattern)){
+                                string newString = randomString();
+                                matriksMain[i][j] = newString;
+                                if(j == matrix_Y - 1){
+                                    Console.WriteLine(matriksMain[i][j] + " ");
+                                }
+                                else{
+                                    Console.Write(matriksMain[i][j] + " ");
+                                }
+                            }
+                        }
+                    }
+                    Console.Write("Masukkan jumlah sequence yang diinginkan : ");
+                    sequenceCount = Convert.ToInt32(Console.ReadLine());
+                    for (int i = 0; i < sequenceCount; i++){
+                        int index = 0;
+                        while (sequenceEnd != true){
+                            string[] newSequenceString;
+                            if (index == 0){
+                                newSequenceString[index] = matriksMain[0][0];
+                            }
+                            else{
+                                sequenceCode = randomString();
+                                newSequenceString[index] = sequenceCode;
+                            }
+                            
+                            if(index == 0){
+                                index++;
+                            }
+                            else{
+                                if(randomNumber.Next(0,100) <= 55){
+                                    sequenceEnd = true;
+                                }
+                                else{
+                                    index++;
+                                }
+                            }
                         }
                     }
                 }

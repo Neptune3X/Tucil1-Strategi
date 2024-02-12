@@ -152,11 +152,12 @@ namespace program{
             
             int c = 0;
             bool endsearch = false;
+            List<int> indexList = new List<int>();
+
             while(!endsearch){
                 int x = 0;
                 int y = 0;
                 int f = 0;
-                List<int> indexList = new List<int>();
                 bool not_found = false;
                 
                 while(!not_found){
@@ -186,6 +187,24 @@ namespace program{
                             }
                         }
                     }
+                }
+            }
+            if(indexList.Count == 0){
+                Console.WriteLine("Reward : " + sum);
+            }
+            else{
+                if(indexList.Count == 1){
+                    Console.WriteLine("Reward : " + sequence_reward[indexList[0]]);
+                }
+                else{
+                    int buffer_needed_for_all = 0;
+                    int q =0;
+                    while(buffer_needed_for_all + sequence_list[indexList[q]].Count <= buffer_size && q < sequence_reward.Length){
+                        sum += sequence_reward[q];
+                        buffer_needed_for_all += sequence_list[indexList[q]].Count;
+                        q++;
+                    }
+                    Console.WriteLine("Reward : " + sum);
                 }
             }
         }

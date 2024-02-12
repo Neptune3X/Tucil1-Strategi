@@ -134,12 +134,6 @@ namespace program{
             }
             Console.WriteLine("++++++++++++++++");
             int sum = 0;
-            int movecount = 0;
-            int pos_x = 0;
-            int pos_y = 0;
-            int buffer_count = 1;
-            int max = 0;
-            int index = -1;
 
             Stopwatch stopwatch = new Stopwatch();
             string[,] copy_matrix = new string[matrix_width,matrix_height];

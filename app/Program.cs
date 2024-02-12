@@ -52,6 +52,9 @@ namespace program{
                 }
                 else{
                     for(int j = 0;j < matrix_height; j++){
+                        if(!Regex.IsMatch(userProcessedCode[j],pattern)){
+                            userProcessedCode[j] = randomString();
+                        }
                         matrix[i,j] = userProcessedCode[j];
                     }
                 }
@@ -92,6 +95,9 @@ namespace program{
                 }
                 else{
                     for(int j = 0;j < buffer_size -1; j++){
+                        if(!Regex.IsMatch(userProcessedCode[j],pattern)){
+                            userProcessedCode[j] = randomString();
+                        }
                         list_sequence_code.Add(userProcessedCode[j]);
                     }
                 }

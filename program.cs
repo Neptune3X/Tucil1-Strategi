@@ -19,7 +19,7 @@ namespace program{
             var finalString = new String(stringChars);
             return finalString;
         }
-        private static void main(){
+        static void Main(string[] args){
             string[] listChar;
             int bufferCount;
             int matrix_X;
@@ -91,13 +91,16 @@ namespace program{
                             }
                             else{
                                 if(randomNumber.Next(0,100) <= 55){
+                                    Console.WriteLine(newSequenceString[index] + " ");
                                     sequenceEnd = true;
                                 }
                                 else{
+                                    Console.Write(newSequenceString[index] + " ");
                                     index++;
                                 }
                             }
                         }
+                        sequenceReward[i] = randomNumber.Next(1,50);
                     }
                 }
             }

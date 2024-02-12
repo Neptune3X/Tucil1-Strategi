@@ -102,9 +102,6 @@ namespace program{
                             userProcessedCode[j] = randomString();
                         }
                         list_sequence_code.Add(userProcessedCode[j]);
-                        if(rnd.Next(0,20) < 10){
-                            break;
-                        }
                     }
                 }
                 Console.Write("Masukkan nilai reward pada sequence ke-" + (k+1) + " : ");

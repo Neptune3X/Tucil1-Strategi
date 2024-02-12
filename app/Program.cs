@@ -38,19 +38,26 @@ namespace program{
             string[,] matrix = new string[matrix_width,matrix_height];
 
             int i = 0;
+            int count = 1;
             while(i < matrix_width){
-                Console.Write("Masukkan code pada baris ke-" + i+1 + " :");
+                Console.Write("Masukkan code pada baris ke-" + count + " : ");
                 string userInputCode = Console.ReadLine();
                 string[] userProcessedCode = userInputCode.Split(" ");
-                for(int j = 0;j < matrix_height; j++){
-                    if(!Regex.IsMatch(userProcessedCode[j],pattern)){
-                        matrix[i,j] = randomString();
+                string[] randomProcessedCode = new string[matrix_height];
+                if(userProcessedCode.Length != matrix_height){
+                    for(int j = 0; j < matrix_height; j++){
+                        randomProcessedCode[j] = randomString();
+                        matrix[i,j] = randomProcessedCode[j];
                     }
-                    else{
+                }
+                else{
+                    for(int j = 0;j < matrix_height; j++){
                         matrix[i,j] = userProcessedCode[j];
                     }
                 }
+
                 i++;
+                count++;
             }
 
             for(int a = 0; i < matrix_width; i++){
@@ -99,7 +106,7 @@ namespace program{
                         }
                     }
                 }
-                Console.Write("Masukkan nilai reward pada sequence ke-" + k+1 + " : ");
+                Console.Write("Masukkan nilai reward pada sequence ke-" + (k+1) + " : ");
                 sequence_reward[k] = Convert.ToInt32(Console.ReadLine());
             }
         }

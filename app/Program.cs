@@ -104,6 +104,9 @@ namespace program{
                 Console.Write("Masukkan nilai reward pada sequence ke-" + (k+1) + " : ");
                 sequence_reward[k] = Convert.ToInt32(Console.ReadLine());
             }
+            int sum = 0;
+            Stopwatch stopwatch = new Stopwatch();
+            
         }
     }
 }

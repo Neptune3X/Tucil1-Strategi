@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpression;
+using System.Text.RegularExpressions;
 using System.Diagnostics;
-using Math.Random;
 
 namespace program{
     class Program{

@@ -108,12 +108,12 @@ namespace program{
                         
                     }
                 }
-                for(int f = 0; f < list_sequence_code.Count;f++){
-                    if(f == list_sequence_code.Count - 1){
-                        Console.WriteLine(list_sequence_code[f] + " ");
+                for(int u = 0; u < list_sequence_code.Count;u++){
+                    if(u == list_sequence_code.Count - 1){
+                        Console.WriteLine(list_sequence_code[u] + " ");
                     }
                     else{
-                        Console.Write(list_sequence_code[f] + " ");
+                        Console.Write(list_sequence_code[u] + " ");
                     }
                 }
                 sequence_list.Add(list_sequence_code);
@@ -122,13 +122,13 @@ namespace program{
             }
 
             Console.WriteLine("++++++++++++++++");
-            for(int f = 0; f < sequence_list.Count;f++){
-                for(int g = 0 ; g < sequence_list[f].Count;g++){
-                    if(g == sequence_list[f].Count - 1){
-                        Console.WriteLine(sequence_list[f][g] + " ");
+            for(int u = 0; u < sequence_list.Count;u++){
+                for(int g = 0 ; g < sequence_list[u].Count;g++){
+                    if(g == sequence_list[u].Count - 1){
+                        Console.WriteLine(sequence_list[u][g] + " ");
                     }
                     else{
-                        Console.Write(sequence_list[f][g] + " ");
+                        Console.Write(sequence_list[u][g] + " ");
                     }
                 }
             }
@@ -137,57 +137,91 @@ namespace program{
 
             Stopwatch stopwatch = new Stopwatch();
             string[,] copy_matrix = new string[matrix_width,matrix_height];
-            for(int f = 0; f < matrix_width; f++){
+            for(int u = 0; u < matrix_width; u++){
                 for(int g = 0; g < matrix_height; g++){
-                    copy_matrix[f,g] = matrix[f,g];
+                    copy_matrix[u,g] = matrix[u,g];
                 }
             }
             listchar[0] = matrix[0,0];
             
-            int c = 0;
             bool endsearch = false;
-            List<int> indexList = new List<int>();
+            int[] indexList = new int[sequence_count];
 
             while(!endsearch){
                 int x = 0;
                 int y = 0;
+                int c = 0;
                 int f = 0;
                 bool not_found = false;
                 
                 while(!not_found){
-                    if(copy_matrix[x,y] == sequence_list[f][c] && c < sequence_list[f].Count){
-                        x = 0;
-                        y = 0;
-                        c++;
-                    }
-                    else if (copy_matrix[x,y] == sequence_list[f][c] && c >= sequence_list[f].Count){
-                        c = 0;
-                        indexList.Add(f);
-                    }
-                    else{
-                        if(f == sequence_list.Count){
-                            not_found = true;
-                        }
-                        else{
-                            if(x == matrix_width && y == matrix_height && copy_matrix[x,y] != sequence_list[f][c]){
-                                f++;
-                            }
-                            else if(y == matrix_height - 1 && copy_matrix[x,y] != sequence_list[f][c]){
+                    if(f <= sequence_list.Count - 1){
+                        if(c < sequence_list[f].Count - 1){
+                            if(copy_matrix[x,y] == sequence_list[f][c]){
+                                x = 0;
                                 y = 0;
-                                x++;
+                                c++;
                             }
                             else{
-                                y++;
+                                if(y == matrix_height - 1){
+                                    y = 0;
+                                    x++;
+                                }
+                                else if(y < matrix_height - 1){
+                                    y++;
+                                }
+                                else if(x == matrix_width - 1 && y == matrix_height - 1){
+                                    x = 0;
+                                    y = 0;
+                                    c = 0;
+                                    f++;
+                                }
                             }
                         }
+                        else if (c == sequence_list[f].Count - 1){
+                            if(copy_matrix[x,y] == sequence_list[f][c-1]){
+                                x = 0;
+                                y = 0;
+                                c = 0;
+                                indexList[f] = f;
+                                f++;
+                            }
+                            else{
+                                if(y == matrix_height - 1){
+                                    y = 0;
+                                    x++;
+                                }
+                                else if(y < matrix_height - 1){
+                                    y++;
+                                }
+                                else if(x == matrix_width - 1 && y == matrix_height - 1){
+                                    x = 0;
+                                    y = 0;
+                                    c = 0;
+                                    f++;
+                                }
+                            }
+                        }
+                        else{
+                            x = 0;
+                            y = 0;
+                            c = 0;
+                            f++;
+                        }
+                    }
+                    else{
+                        not_found = true;
+                        endsearch = true;
                     }
                 }
             }
-            if(indexList.Count == 0){
+
+            Console.WriteLine(indexList.Length);
+            if(indexList.Length == 0){
                 Console.WriteLine("Reward : " + sum);
             }
             else{
-                if(indexList.Count == 1){
+                if(indexList.Length == 1){
                     Console.WriteLine("Reward : " + sequence_reward[indexList[0]]);
                 }
                 else{

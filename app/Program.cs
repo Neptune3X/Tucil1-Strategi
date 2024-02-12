@@ -134,7 +134,15 @@ namespace program{
             }
             Console.WriteLine("++++++++++++++++");
             int sum = 0;
+            int movecount = 0;
+            int buffer_count = 1;
             Stopwatch stopwatch = new Stopwatch();
+            string charpos = matrix[0,0];
+            listchar[0] = charpos;
+            while(buffer_count != buffer_size){
+                
+                buffer_count++;
+            }
 
         }
     }

@@ -15,11 +15,10 @@ namespace program{
                 stringChars[i] = numchars[random.Next(numchars.Length)];
             }
 
-            var finalString = new String(stringChars);
+            var finalString = new string(stringChars);
             return finalString;
         }
         static void Main(string[] args){
-            string[] listchar;
             int buffer_size;
             int matrix_width;
             int matrix_height;
@@ -28,6 +27,8 @@ namespace program{
 
             Console.Write("Masukkan ukuran buffer yang diinginkan");
             buffer_size = Convert.ToInt32(Console.ReadLine());
+
+            string[] listchar = new string[buffer_size];
 
             Console.Write("Masukkan lebar dan tinggi matrix : ");
             string userInput = Console.ReadLine();
@@ -55,10 +56,45 @@ namespace program{
                 }
             }
 
-            
+            Console.Write("Masukkan jumlah sequence yang diinginkan : ");
+            sequence_count = Convert.ToInt32(Console.ReadLine());
 
+            int[] sequence_reward = new int[sequence_count];
+            List<string> sequence_list = new List<string>();
+            Random rnd = new Random();
+            for(int k = 0;k < sequence_count; k++){
+                bool sequence_end = false;
+                int x = 1;
+                int check = 3;
+                while(!sequence_end){
+                    List<string> list_sequence_code = [matrix[0,0]];
 
+                    userInput = Console.ReadLine();
+                    if(!Regex.IsMatch(userInput,pattern)){
+                        list_sequence_code.Add(randomString());
+                    }
+                    else{
+                        list_sequence_code.Add(userInput);
+                    }
 
+                    if(rnd.Next(1,10) < check){
+                        sequence_end = true;
+                        sequence_list.AddRange(list_sequence_code);
+                    }
+                    else{
+                        if(x <= buffer_size){
+                            sequence_end = true;
+                            sequence_list.AddRange(list_sequence_code);
+                        }
+                        else{
+                            x++;
+                            check++;
+                        }
+                    }
+                }
+                Console.Write("Masukkan nilai reward pada sequence ke-" + k+1 + " : ");
+                sequence_reward[k] = Convert.ToInt32(Console.ReadLine());
+            }
         }
     }
 }

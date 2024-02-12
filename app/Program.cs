@@ -37,11 +37,30 @@ namespace program{
             matrix_height = Convert.ToInt32(userProcessedInput[1]);
             string[,] matrix = new string[matrix_width,matrix_height];
 
-            
+            int i = 0;
+            while(i < matrix_width){
+                Console.Write("Masukkan code pada baris ke-" + i+1 + " :");
+                string userInputCode = Console.ReadLine();
+                string[] userProcessedCode = userInputCode.Split(" ");
+                for(int j = 0;j < matrix_height; j++){
+                    if(!Regex.IsMatch(userProcessedCode[j],pattern)){
+                        matrix[i,j] = randomString();
+                    }
+                    else{
+                        matrix[i,j] = userProcessedCode[j];
+                    }
+                }
+                i++;
+            }
 
-            for(int i = 0; i < matrix_width; i++){
+            for(int a = 0; i < matrix_width; i++){
                 for(int j = 0; j < matrix_height; j++){
-                    
+                    if(j == matrix_height - 1){
+                        Console.WriteLine(matrix[a,j] + " ");
+                    }
+                    else{
+                        Console.Write(matrix[a,j] + " ");
+                    }
                 }
             }
             Console.Write("Masukkan jumlah sequence yang diinginkan : ");

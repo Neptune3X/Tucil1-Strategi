@@ -135,15 +135,59 @@ namespace program{
             Console.WriteLine("++++++++++++++++");
             int sum = 0;
             int movecount = 0;
+            int pos_x = 0;
+            int pos_y = 0;
             int buffer_count = 1;
-            Stopwatch stopwatch = new Stopwatch();
-            string charpos = matrix[0,0];
-            listchar[0] = charpos;
-            while(buffer_count != buffer_size){
-                
-                buffer_count++;
-            }
+            int max = 0;
+            int index = -1;
 
+            Stopwatch stopwatch = new Stopwatch();
+            string[,] copy_matrix = new string[matrix_width,matrix_height];
+            for(int f = 0; f < matrix_width; f++){
+                for(int g = 0; g < matrix_height; g++){
+                    copy_matrix[f,g] = matrix[f,g];
+                }
+            }
+            listchar[0] = matrix[0,0];
+            
+            int c = 0;
+            bool endsearch = false;
+            while(!endsearch){
+                int x = 0;
+                int y = 0;
+                int f = 0;
+                List<int> indexList = new List<int>();
+                bool not_found = false;
+                
+                while(!not_found){
+                    if(copy_matrix[x,y] == sequence_list[f][c] && c < sequence_list[f].Count){
+                        x = 0;
+                        y = 0;
+                        c++;
+                    }
+                    else if (copy_matrix[x,y] == sequence_list[f][c] && c >= sequence_list[f].Count){
+                        c = 0;
+                        indexList.Add(f);
+                    }
+                    else{
+                        if(f == sequence_list.Count){
+                            not_found = true;
+                        }
+                        else{
+                            if(x == matrix_width && y == matrix_height && copy_matrix[x,y] != sequence_list[f][c]){
+                                f++;
+                            }
+                            else if(y == matrix_height - 1 && copy_matrix[x,y] != sequence_list[f][c]){
+                                y = 0;
+                                x++;
+                            }
+                            else{
+                                y++;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

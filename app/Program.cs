@@ -59,8 +59,8 @@ namespace program{
                 i++;
                 count++;
             }
-
-            for(int a = 0; i < matrix_width; i++){
+            Console.WriteLine("++++++++++++++++");
+            for(int a = 0; a < matrix_width; a++){
                 for(int j = 0; j < matrix_height; j++){
                     if(j == matrix_height - 1){
                         Console.WriteLine(matrix[a,j] + " ");
@@ -70,6 +70,7 @@ namespace program{
                     }
                 }
             }
+            Console.WriteLine("++++++++++++++++");
             Console.Write("Masukkan jumlah sequence yang diinginkan : ");
             sequence_count = Convert.ToInt32(Console.ReadLine());
 
@@ -77,33 +78,21 @@ namespace program{
             List<string> sequence_list = new List<string>();
             Random rnd = new Random();
             for(int k = 0;k < sequence_count; k++){
-                bool sequence_end = false;
-                int x = 1;
-                int check = 3;
-                while(!sequence_end){
-                    List<string> list_sequence_code = [matrix[0,0]];
+                List<string> list_sequence_code = [matrix[0,0]];
+                Console.Write("Masukkan code pada sequence ke-" + (k+1) + " : ");
+                string userInputCode = Console.ReadLine();
+                string[] userProcessedCode = userInputCode.Split(" ");
+                string[] randomProcessedCode = new string[buffer_size];
 
-                    userInput = Console.ReadLine();
-                    if(!Regex.IsMatch(userInput,pattern)){
-                        list_sequence_code.Add(randomString());
+                if(userProcessedCode.Length != buffer_size){
+                    for(int j = 0; j < buffer_size - 1; j++){
+                        randomProcessedCode[j] = randomString();
+                        list_sequence_code.Add(randomProcessedCode[j]);
                     }
-                    else{
-                        list_sequence_code.Add(userInput);
-                    }
-
-                    if(rnd.Next(1,10) < check){
-                        sequence_end = true;
-                        sequence_list.AddRange(list_sequence_code);
-                    }
-                    else{
-                        if(x <= buffer_size){
-                            sequence_end = true;
-                            sequence_list.AddRange(list_sequence_code);
-                        }
-                        else{
-                            x++;
-                            check++;
-                        }
+                }
+                else{
+                    for(int j = 0;j < buffer_size -1; j++){
+                        list_sequence_code.Add(userProcessedCode[j]);
                     }
                 }
                 Console.Write("Masukkan nilai reward pada sequence ke-" + (k+1) + " : ");

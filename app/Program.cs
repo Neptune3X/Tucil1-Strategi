@@ -6,8 +6,8 @@ using System.Diagnostics;
 using Math.Random;
 
 namespace program{
-    class program{
-        private string randomString(){
+    class Program{
+        public string randomString(){
             var numchars = "0123456789ABCDEFGHIJKLMNOPQRSRTUVWXYZ";
             var stringChars = new char[2];
             var random = new Random();
@@ -47,8 +47,8 @@ namespace program{
                 Console.Write("Maaf, jumlah imput tidak sama dengan dua");
             }
             else{
-                matrix_X = splittedItems[0];
-                matrix_Y = splittedItems[1];
+                matrix_X = Convert.ToInt32(splittedItems[0]);
+                matrix_Y = Convert.ToInt32(splittedItems[1]);
 
                 Console.Write("Masukkan string yang diinginkan untuk diinput ke dalam matriks : ");
                 userInput = Console.ReadLine();

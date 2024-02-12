@@ -97,7 +97,7 @@ namespace program{
                     }
                 }
                 else{
-                    for(int j = 0;j < buffer_size -1; j++){
+                    for(int j = 0;j < userProcessedCode.Length; j++){
                         if(!Regex.IsMatch(userProcessedCode[j],pattern)){
                             userProcessedCode[j] = randomString();
                         }

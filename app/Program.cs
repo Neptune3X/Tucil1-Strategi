@@ -7,7 +7,7 @@ using Math.Random;
 
 namespace program{
     class Program{
-        public string randomString(){
+        public static string randomString(){
             var numchars = "0123456789ABCDEFGHIJKLMNOPQRSRTUVWXYZ";
             var stringChars = new char[2];
             var random = new Random();
@@ -57,9 +57,10 @@ namespace program{
                     Console.Write("Maaf, jumlah imput tidak sama dengan perkalian antara baris X dengan kolum Y");
                 }
                 else{
+                    int k = 0;
                     for(int i  = 0; i < matrix_X; i++){
                         for(int j = 0; j < matrix_Y; j++){
-                            matriksMain[i][j] = splittedItems;
+                            matriksMain[i][j] = splittedItems[k];
                             if(!Regex.IsMatch(matriksMain[i][j], pattern)){
                                 string newString = randomString();
                                 matriksMain[i][j] = newString;
@@ -70,6 +71,7 @@ namespace program{
                                     Console.Write(matriksMain[i][j] + " ");
                                 }
                             }
+                            k++;
                         }
                     }
                     Console.Write("Masukkan jumlah sequence yang diinginkan : ");

@@ -1,0 +1,15 @@
+D:\Tucil1-Strategi\app\bin\Debug\net8.0\app.exe
+D:\Tucil1-Strategi\app\bin\Debug\net8.0\app.deps.json
+D:\Tucil1-Strategi\app\bin\Debug\net8.0\app.runtimeconfig.json
+D:\Tucil1-Strategi\app\bin\Debug\net8.0\app.dll
+D:\Tucil1-Strategi\app\bin\Debug\net8.0\app.pdb
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\app.GeneratedMSBuildEditorConfig.editorconfig
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\app.AssemblyInfoInputs.cache
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\app.AssemblyInfo.cs
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\app.csproj.CoreCompileInputs.cache
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\app.sourcelink.json
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\app.dll
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\refint\app.dll
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\app.pdb
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\app.genruntimeconfig.cache
+D:\Tucil1-Strategi\app\obj\Debug\net8.0\ref\app.dll

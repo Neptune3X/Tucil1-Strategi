@@ -25,7 +25,7 @@ namespace program{
             int sequence_count;
             string pattern = @"[A-Z0-9]{2}";
 
-            Console.Write("Masukkan ukuran buffer yang diinginkan");
+            Console.Write("Masukkan ukuran buffer yang diinginkan : ");
             buffer_size = Convert.ToInt32(Console.ReadLine());
 
             string[] listchar = new string[buffer_size];
@@ -37,25 +37,13 @@ namespace program{
             matrix_height = Convert.ToInt32(userProcessedInput[1]);
             string[,] matrix = new string[matrix_width,matrix_height];
 
+            
+
             for(int i = 0; i < matrix_width; i++){
                 for(int j = 0; j < matrix_height; j++){
-                    string userInputIntoMatrix = Console.ReadLine();
-                    if(!Regex.IsMatch(userInputIntoMatrix,pattern)){
-                        matrix[i,j] = randomString();
-                    }
-                    else{
-                        matrix[i,j] = userInputIntoMatrix;
-                    }
-
-                    if(j == matrix_height - 1){
-                        Console.WriteLine(matrix[i,j] + " ");
-                    }
-                    else{
-                        Console.Write(matrix[i,j] + " ");
-                    }
+                    
                 }
             }
-
             Console.Write("Masukkan jumlah sequence yang diinginkan : ");
             sequence_count = Convert.ToInt32(Console.ReadLine());
 

@@ -91,6 +91,9 @@ namespace program{
                     for(int j = 0; j < buffer_size - 1; j++){
                         randomProcessedCode[j] = randomString();
                         list_sequence_code.Add(randomProcessedCode[j]);
+                        if(rnd.Next(0,20) < 10){
+                            break;
+                        }
                     }
                 }
                 else{
@@ -99,6 +102,9 @@ namespace program{
                             userProcessedCode[j] = randomString();
                         }
                         list_sequence_code.Add(userProcessedCode[j]);
+                        if(rnd.Next(0,20) < 10){
+                            break;
+                        }
                     }
                 }
                 Console.Write("Masukkan nilai reward pada sequence ke-" + (k+1) + " : ");
@@ -106,7 +112,7 @@ namespace program{
             }
             int sum = 0;
             Stopwatch stopwatch = new Stopwatch();
-            
+
         }
     }
 }

@@ -23,7 +23,7 @@ namespace program{
             int matrix_width;
             int matrix_height;
             int sequence_count;
-            string pattern = @"[A-Z0-9]{2}";
+            string pattern = @"^[A-Z0-9]{2}\z";
 
             Console.Write("Masukkan ukuran buffer yang diinginkan : ");
             buffer_size = Convert.ToInt32(Console.ReadLine());
@@ -78,7 +78,7 @@ namespace program{
             sequence_count = Convert.ToInt32(Console.ReadLine());
 
             int[] sequence_reward = new int[sequence_count];
-            List<string> sequence_list = new List<string>();
+            List<List<string>> sequence_list = new List<List<string>>();
             Random rnd = new Random();
             for(int k = 0;k < sequence_count; k++){
                 List<string> list_sequence_code = [matrix[0,0]];
@@ -87,7 +87,7 @@ namespace program{
                 string[] userProcessedCode = userInputCode.Split(" ");
                 string[] randomProcessedCode = new string[buffer_size];
 
-                if(userProcessedCode.Length != buffer_size){
+                if(userProcessedCode.Length > buffer_size){
                     for(int j = 0; j < buffer_size - 1; j++){
                         randomProcessedCode[j] = randomString();
                         list_sequence_code.Add(randomProcessedCode[j]);
@@ -98,15 +98,41 @@ namespace program{
                 }
                 else{
                     for(int j = 0;j < userProcessedCode.Length; j++){
-                        if(!Regex.IsMatch(userProcessedCode[j],pattern)){
-                            userProcessedCode[j] = randomString();
+                        if(Regex.IsMatch(userProcessedCode[j],pattern)){
+                            list_sequence_code.Add(userProcessedCode[j]);
                         }
-                        list_sequence_code.Add(userProcessedCode[j]);
+                        else{
+                            userProcessedCode[j] = randomString();
+                            list_sequence_code.Add(userProcessedCode[j]);
+                        }
+                        
                     }
                 }
+                for(int f = 0; f < list_sequence_code.Count;f++){
+                    if(f == list_sequence_code.Count - 1){
+                        Console.WriteLine(list_sequence_code[f] + " ");
+                    }
+                    else{
+                        Console.Write(list_sequence_code[f] + " ");
+                    }
+                }
+                sequence_list.Add(list_sequence_code);
                 Console.Write("Masukkan nilai reward pada sequence ke-" + (k+1) + " : ");
                 sequence_reward[k] = Convert.ToInt32(Console.ReadLine());
             }
+
+            Console.WriteLine("++++++++++++++++");
+            for(int f = 0; f < sequence_list.Count;f++){
+                for(int g = 0 ; g < sequence_list[f].Count;g++){
+                    if(g == sequence_list[f].Count - 1){
+                        Console.WriteLine(sequence_list[f][g] + " ");
+                    }
+                    else{
+                        Console.Write(sequence_list[f][g] + " ");
+                    }
+                }
+            }
+            Console.WriteLine("++++++++++++++++");
             int sum = 0;
             Stopwatch stopwatch = new Stopwatch();
 
